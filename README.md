@@ -10,79 +10,83 @@ Install globally `js-beautify` and `cli-highlight`. Then run:
 node bundler | js-beautify | highlight
 ```
 
+Output from above command.
+
 ```
-(function(mapping) {
-   function require(id) {
-       const [fn, mapping] = mapping[id];
+(function(modules) {
+    function require(id) {
+        const [fn, mapping] = modules[id];
 
-       function localRequire(relativePath) {
-           return require(mapping[relativePath])
-       }
+        function localRequire(relativePath) {
+            return require(mapping[relativePath])
+        }
 
-       const module = {
-           exports: {}
-       };
+        const module = {
+            exports: {}
+        };
 
-       fn(localRequire, module, module.exports);
+        fn(localRequire, module, module.exports);
 
-       return module.exports;
-   }
+        return module.exports;
+    }
 
-   require(0);
+    require(0);
 })({
-   0: [
-       function(require, module, exports) {
-           "use strict";
+    0: [
+        function(require, module, exports) {
+            "use strict";
 
-           var _message = _interopRequireDefault(require("./message.js"));
+            var _message = _interopRequireDefault(require("./message.js"));
 
-           function _interopRequireDefault(obj) {
-               return obj && obj.__esModule ? obj : {
-                   "default": obj
-               };
-           }
+            function _interopRequireDefault(obj) {
+                return obj && obj.__esModule ? obj : {
+                    "default": obj
+                };
+            }
 
-           console.log(_message["default"]);
-       },
-       {
-           "./message.js": 1
-       }
-   ] 1: [
-       function(require, module, exports) {
-           "use strict";
+            console.log(_message["default"]);
+        },
+        {
+            "./message.js": 1
+        }
+    ],
+    1: [
+        function(require, module, exports) {
+            "use strict";
 
-           Object.defineProperty(exports, "__esModule", {
-               value: true
-           });
-           exports["default"] = void 0;
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports["default"] = void 0;
 
-           var _name = _interopRequireDefault(require("./name.js"));
+            var _name = _interopRequireDefault(require("./name.js"));
 
-           function _interopRequireDefault(obj) {
-               return obj && obj.__esModule ? obj : {
-                   "default": obj
-               };
-           }
+            function _interopRequireDefault(obj) {
+                return obj && obj.__esModule ? obj : {
+                    "default": obj
+                };
+            }
 
-           var _default = "hi ".concat(_name["default"]);
+            var _default = "hi ".concat(_name["default"]);
 
-           exports["default"] = _default;
-       },
-       {
-           "./name.js": 2
-       }
-   ] 2: [
-       function(require, module, exports) {
-           "use strict";
+            exports["default"] = _default;
+        },
+        {
+            "./name.js": 2
+        }
+    ],
+    2: [
+        function(require, module, exports) {
+            "use strict";
 
-           Object.defineProperty(exports, "__esModule", {
-               value: true
-           });
-           exports["default"] = void 0;
-           var _default = "Carlton";
-           exports["default"] = _default;
-       },
-       {}
-   ]
-});
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+            exports["default"] = void 0;
+            var _default = "Carlton";
+            exports["default"] = _default;
+        },
+        {}
+    ],
+})
 ```
